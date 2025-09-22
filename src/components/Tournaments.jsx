@@ -5,8 +5,12 @@ export default function Tournaments() {
 
   useEffect(() => {
     fetch("https://lichess.org/api/tournament")
-      .then((res) => res.json())
-      .then((data) => setTournaments(data || []))
+      .then((res) => res.text()) // get NDJSON as text
+      .then((text) => {
+        const lines = text.trim().split("\n"); // split into lines
+        const data = lines.map((line) => JSON.parse(line)); // parse each line as JSON
+        setTournaments(data);
+      })
       .catch(console.error);
   }, []);
 

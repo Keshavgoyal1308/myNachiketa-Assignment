@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, NavLink,Navigate  } from "react-router-dom";
 import Profile from "./components/Profile";
 import Leaderboard from "./components/Leaderboard";
 import Tournaments from "./components/Tournaments";
@@ -21,6 +21,8 @@ export default function App() {
 
       <div className="container">
         <Routes>
+
+           <Route path="/" element={<Navigate to="/profiles" replace />} />
           <Route path="/profiles" element={<Profile />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
           <Route path="/tournaments" element={<Tournaments />} />
