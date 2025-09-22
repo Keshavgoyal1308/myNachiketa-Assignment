@@ -4,23 +4,24 @@ export default function Leaderboard() {
   const [players, setPlayers] = useState([]);
 
   useEffect(() => {
-    fetch("https://lichess.org/api/player/top/10/blitz") // Example: Top 10 Blitz
+    fetch("https://lichess.org/api/player/top/10/blitz")
       .then((res) => res.json())
       .then((data) => setPlayers(data.users || []))
       .catch(console.error);
   }, []);
 
   return (
-    <div className="p-4">
-      <h2 className="text-xl font-bold mb-4">Top Blitz Players</h2>
-      <ul className="space-y-2">
+    <div>
+      <h2>Top Blitz Players</h2>
+      <div className="grid">
         {players.map((p, i) => (
-          <li key={i} className="border p-2 rounded bg-gray-100">
-            <p><strong>{p.username}</strong> {p.title && `(${p.title})`}</p>
+          <div key={i} className="card">
+            <h3>{p.username} {p.title && `(${p.title})`}</h3>
+            <p>Rank: {i + 1}</p>
             <p>Rating: {p.perfs.blitz.rating}</p>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }

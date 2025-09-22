@@ -11,18 +11,17 @@ export default function Tournaments() {
   }, []);
 
   return (
-    <div className="p-4">
-      <h2 className="text-xl font-bold mb-4">Ongoing Tournaments</h2>
-      <ul className="space-y-2">
+    <div>
+      <h2>Ongoing Tournaments</h2>
+      <div className="grid">
         {tournaments.map((t, i) => (
-          <li key={i} className="border p-2 rounded bg-gray-100">
-            <p><strong>{t.fullName}</strong></p>
-            <p>Starts at: {new Date(t.startsAt).toLocaleString()}</p>
+          <div key={i} className="card">
+            <h3>{t.fullName}</h3>
+            <p>Starts: {new Date(t.startsAt).toLocaleString()}</p>
             <p>Players: {t.nbPlayers}</p>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
-
